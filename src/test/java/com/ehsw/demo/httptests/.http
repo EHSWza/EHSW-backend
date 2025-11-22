@@ -1,0 +1,34 @@
+### Create a new user (POST 201)
+POST http://localhost:8080/users/login
+Content-Type: application/json
+
+{
+  "google_user_id": "user_12345_test",
+  "role": "ADMIN"
+}
+
+### Login existing user (POST 200)
+POST http://localhost:8080/users/login
+Content-Type: application/json
+
+{
+  "google_user_id": "goginad-gasd-sgds-sgs-gsa-gsds-gsds",
+  "role": "USER"
+}
+
+### Missing field (POST 400)
+POST http://localhost:8080/users/login
+Content-Type: application/json
+
+{
+  "role": "USER"
+}
+
+### Another new user
+POST http://localhost:8080/users/login
+Content-Type: application/json
+
+{
+  "google_user_id": "google_abc999",
+  "role": "USER"
+}
