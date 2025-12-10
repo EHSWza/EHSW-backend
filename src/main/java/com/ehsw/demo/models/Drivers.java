@@ -17,20 +17,20 @@ import java.util.UUID;
 public class Drivers {
     @Id
     @Column(name = "driver_id", nullable = false)
-    private UUID driver_id;
+    private UUID driverId;
 
     @Column(name = "driver_name", nullable = false, length = 150)
-    private String driver_name;
+    private String driverName;
 
     @Column(name = "vehicle_number_plate", nullable = false, length = 20)
-    private String vehicle_number_plate;
+    private String vehicleNumberPlate;
 
     @Column(name = "car_model", length = 100)
-    private String car_model;
+    private String carModel;
 
     @Column(name = "platform", nullable = false, length = 50)
     private String platform;
 
     @Column(name = "created_at")
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 }

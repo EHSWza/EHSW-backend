@@ -23,12 +23,12 @@ public class Users {
     private String role;
 
     @Column(name = "created_at")
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     public Users(String google_user_id, String role, LocalDateTime created_at) {
         this.googleUserId = google_user_id;
         this.role = role;
-        this.created_at = created_at;
+        this.createdAt = created_at;
     }
 
     public Users() {

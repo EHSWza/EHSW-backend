@@ -15,18 +15,17 @@ import java.util.UUID;
 public class DisputeEvidence {
     @Id
     @Column(name = "dispute_evidence_id", nullable = false)
-    private UUID dispute_evidence_id;
+    private UUID disputeEvidenceId;
 
-    @ManyToOne
     @JoinColumn(name = "dispute_id", nullable = false)
-    private DriverDisputes dispute_id;
+    private UUID disputeId;
 
     @Column(name = "file_url")
-    private String file_url;
+    private String fileUrl;
 
     @Column(name = "description")
     private String description;
 
     @Column(name = "uploaded_at")
-    private LocalDateTime uploaded_at;
+    private LocalDateTime uploadedAt;
 }
