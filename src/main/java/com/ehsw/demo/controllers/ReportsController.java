@@ -5,10 +5,7 @@ import com.ehsw.demo.models.Reports;
 import com.ehsw.demo.repositories.DriversRepository;
 import com.ehsw.demo.repositories.ReportsRepository;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -24,31 +21,57 @@ public class ReportsController {
     }
 
 
+//    @GetMapping("/reports")
+//    public ResponseEntity<?> getReportsByDriverLicenceNumber(@RequestBody Map<String, String> requestBody) {
+//        try {
+//            String numberPlate = requestBody.get("numberPlate");
+//
+//            if(numberPlate==null){
+//                return ResponseEntity.badRequest().body("Missing number plate");
+//            }
+//
+//            Drivers driver = driversRepository.findByVehicleNumberPlate(numberPlate);
+//
+//            if(driver==null){
+//                return ResponseEntity.badRequest().body("Driver not found");
+//            }
+//
+//            ArrayList<Reports> reportsList = reportsRepository.findByDriverId(driver.getDriverId());
+//
+//            if(reportsList==null){
+//                return ResponseEntity.badRequest().body("Report not found");
+//            }else{
+//                return ResponseEntity.ok(reportsList);
+//            }
+//        }
+//        catch (Exception e) {
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        }
+//    }
+
     @GetMapping("/reports")
-    public ResponseEntity<?> getReportsByDriverLicenceNumber(@RequestBody Map<String, String> requestBody) {
+    @CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
+    public ResponseEntity<?> getReportsByDriverLicenceNumber(
+            @RequestParam String numberPlate
+    ) {
         try {
-            String numberPlate = requestBody.get("numberPlate");
-
-            if(numberPlate==null){
-                return ResponseEntity.badRequest().body("Missing number plate");
-            }
-
             Drivers driver = driversRepository.findByVehicleNumberPlate(numberPlate);
 
-            if(driver==null){
+            if (driver == null) {
                 return ResponseEntity.badRequest().body("Driver not found");
             }
 
-            ArrayList<Reports> reportsList = reportsRepository.findByDriverId(driver.getDriverId());
+            ArrayList<Reports> reportsList =
+                    reportsRepository.findByDriverId(driver.getDriverId());
 
-            if(reportsList==null){
-                return ResponseEntity.badRequest().body("Report not found");
-            }else{
+            if (reportsList == null || reportsList.isEmpty()) {
                 return ResponseEntity.ok(reportsList);
             }
-        }
-        catch (Exception e) {
+
+            return ResponseEntity.ok(reportsList);
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
 }
