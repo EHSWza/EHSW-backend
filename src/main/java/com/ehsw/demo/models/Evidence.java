@@ -14,15 +14,14 @@ import java.util.UUID;
 public class Evidence {
     @Id
     @Column(name = "evidence_id", nullable = false)
-    private UUID evidence_id;
+    private UUID evidenceId;
 
-    @ManyToOne
     @JoinColumn(name = "report_id")
-    private Reports report_id;
+    private UUID reportId;
 
 
     @Column(name = "file_url", nullable = false)
-    private String file_url;
+    private String fileUrl;
 
     @Column(name = "description")
     private String description;
@@ -31,5 +30,5 @@ public class Evidence {
     private String category;
 
     @Column(name = "uploaded_at")
-    private LocalDateTime uploaded_at;
+    private LocalDateTime uploadedAt;
 }

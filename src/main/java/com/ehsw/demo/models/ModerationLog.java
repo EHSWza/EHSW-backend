@@ -14,19 +14,16 @@ import java.util.UUID;
 public class ModerationLog {
     @Id
     @Column(name = "log_id", nullable = false)
-    private UUID log_id;
+    private UUID logId;
 
-    @ManyToOne
     @JoinColumn(name = "report_id")
-    private Reports report_id;
+    private UUID reportId;
 
-    @ManyToOne
     @JoinColumn(name = "dispute_id")
-    private DriverDisputes dispute_id;
+    private UUID disputeId;
 
-    @ManyToOne
     @JoinColumn(name = "moderator_id")
-    private Users moderator_id;
+    private UUID moderatorId;
 
     @Column(name = "action")
     private String action;
