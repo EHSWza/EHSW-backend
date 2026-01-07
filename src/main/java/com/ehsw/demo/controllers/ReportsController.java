@@ -50,7 +50,7 @@ public class ReportsController {
 //    }
 
     @GetMapping("/reports")
-    @CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
+    @CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET})
     public ResponseEntity<?> getReportsByDriverLicenceNumber(
             @RequestParam String numberPlate
     ) {
@@ -67,7 +67,7 @@ public class ReportsController {
             if (reportsList == null || reportsList.isEmpty()) {
                 return ResponseEntity.ok(reportsList);
             }
-
+            
             return ResponseEntity.ok(reportsList);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
