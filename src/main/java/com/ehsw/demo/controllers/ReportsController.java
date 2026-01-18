@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 public class ReportsController {
@@ -65,7 +66,12 @@ public class ReportsController {
                     reportsRepository.findByDriverId(driver.getDriverId());
 
             if (reportsList == null || reportsList.isEmpty()) {
-                return ResponseEntity.ok(reportsList);
+                return ResponseEntity.badRequest().body("No reports found");
+            }
+
+            for (Reports report : reportsList) {
+                report.setDriverId(null);
+                report.setReportId(null);
             }
             
             return ResponseEntity.ok(reportsList);
